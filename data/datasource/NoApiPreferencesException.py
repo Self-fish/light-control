@@ -1,0 +1,3 @@
+
+class NoApiPreferenceException(Exception):
+    pass
