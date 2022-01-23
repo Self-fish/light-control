@@ -1,12 +1,9 @@
-from dependency_injector.wiring import inject, Provide
-
-from HandleLightsContainer import HandleLightsContainer
 from data.driver.RelayController import RelayController
 
 
 class LightStatusRepository:
 
-    def __init__(self, light_controller: RelayController = Provide[HandleLightsContainer.light_controller]):
+    def __init__(self, light_controller: RelayController):
         self.__light_controller = light_controller
         self.current_light_status = self.__light_controller.get_current_relay_status()
 
