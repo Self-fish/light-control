@@ -6,5 +6,5 @@ from data.repository.LightStatus import LightStatusRepository
 
 class HandleLightsContainer(containers.DeclarativeContainer):
     config = providers.Configuration()
-    light_controller = providers.Factory(RelayController, 0)
+    light_controller = providers.Factory(RelayController, 6)
     light_status_repository = providers.Singleton(LightStatusRepository, light_controller)
