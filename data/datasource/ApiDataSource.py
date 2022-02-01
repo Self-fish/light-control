@@ -44,7 +44,8 @@ def update_light_preferences(preferences: LightPreferencesDataModel):
                          {'starting': preferences.starting_hour,
                           'finishing': preferences.finishing_hour
                           }
-                     }
+                     },
+                'deviceId': 'sf-000000009df9b724'
                 }
         json_object = json.dumps(body)
         print(json_object)
