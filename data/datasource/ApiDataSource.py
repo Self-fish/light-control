@@ -39,7 +39,7 @@ def get_light_preferences():
 def update_light_preferences(preferences: LightPreferencesDataModel):
     try:
         body = {'lightsPreferences':
-                    {'mode': preferences.light_mode,
+                    {'mode': preferences.light_mode.name,
                      'range':
                          {'starting': preferences.starting_hour,
                           'finishing': preferences.finishing_hour
