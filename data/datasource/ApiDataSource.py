@@ -38,19 +38,12 @@ def get_light_preferences():
 
 def update_light_preferences(preferences: LightPreferencesDataModel):
     try:
-        body = {'lightsPreferences':
-                    {'mode': preferences.light_mode.name,
-                     'range':
-                         {'starting': preferences.starting_hour,
-                          'finishing': preferences.finishing_hour
-                          }
-                     },
-                'deviceId': 'sf-000000009df9b724'
-                }
+        body = {'lightsPreferences': {'mode': preferences.light_mode.name, 'range': {'starting': preferences.starting_hour, 'finishing': preferences.finishing_hour}}, 'deviceId': 'sf-000000009df9b724'}
         json_object = json.dumps(body)
         print(json_object)
         result = requests.put(API_URI_UPDATE, data=body)
         print(result.status_code)
+        print(result.content)
         if result != 200:
             raise NoApiPreferenceException
     except (ConnectionError, ConnectTimeout):
