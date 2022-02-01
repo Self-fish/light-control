@@ -21,8 +21,6 @@ def update_light_preferences(light_preferences: LightPreferences):
         preferences = LightPreferencesDataModel(light_preferences.starting_hour, light_preferences.finishing_hour,
                                                 light_preferences.light_mode)
         ApiDataSource.update_light_preferences(preferences)
-        print("Worked")
         return 0
     except NoApiPreferenceException:
-        print("Didnt work")
         return -1

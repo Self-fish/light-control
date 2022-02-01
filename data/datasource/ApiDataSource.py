@@ -43,11 +43,8 @@ def update_light_preferences(preferences: LightPreferencesDataModel):
         headers = CaseInsensitiveDict()
         headers["Content-Type"] = "application/json"
         json_object = json.dumps(body)
-        print(json_object)
         result = requests.put(API_URI_UPDATE, headers=headers, data=json_object)
-        print(result.status_code)
-        print(result.content)
-        if result != 200:
+        if result.status_code != 200:
             raise NoApiPreferenceException
     except (ConnectionError, ConnectTimeout):
         raise NoApiPreferenceException
