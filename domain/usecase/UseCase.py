@@ -37,7 +37,9 @@ class HandleLightsUseCase:
             print("Apagamos las luces")
             self.__light_repository.update_light_status(RelayStatus.OFF)
 
-    def turn_on_lighs(self):
+    def turn_on_lights(self):
         self.__light_repository.update_light_status(RelayStatus.ON)
 
+    def turn_off_lights(self):
+        self.__light_repository.update_light_status(RelayStatus.OFF)
 
