@@ -48,7 +48,7 @@ def update_light_preferences(preferences: LightPreferencesDataModel):
                 }
         json_object = json.dumps(body)
         print(json_object)
-        result = requests.put(API_URI_UPDATE, data=json_object)
+        result = requests.put(API_URI_UPDATE, data=body)
         print(result.status_code)
         if result != 200:
             raise NoApiPreferenceException
