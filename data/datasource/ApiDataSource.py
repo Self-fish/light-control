@@ -44,6 +44,9 @@ def update_light_preferences(preferences: LightPreferencesDataModel):
                           }
                      }
                 }
-        requests.put(API_URI_UPDATE, body)
+        result = requests.put(API_URI_UPDATE, body)
+        print(result.status_code)
+        if result != 200:
+            raise NoApiPreferenceException
     except (ConnectionError, ConnectTimeout):
         raise NoApiPreferenceException
