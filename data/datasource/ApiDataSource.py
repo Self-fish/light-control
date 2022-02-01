@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 from requests.exceptions import ConnectionError, ConnectTimeout
@@ -44,7 +46,9 @@ def update_light_preferences(preferences: LightPreferencesDataModel):
                           }
                      }
                 }
-        result = requests.put(API_URI_UPDATE, body)
+        json_object = json.dumps(body)
+        print(json_object)
+        result = requests.put(API_URI_UPDATE, json_object)
         print(result.status_code)
         if result != 200:
             raise NoApiPreferenceException
