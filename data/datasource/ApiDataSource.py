@@ -44,7 +44,7 @@ def update_light_preferences(preferences: LightPreferencesDataModel):
         headers["Content-Type"] = "application/json"
         json_object = json.dumps(body)
         print(json_object)
-        result = requests.put(API_URI_UPDATE, headers=headers, data=body)
+        result = requests.put(API_URI_UPDATE, headers=headers, json=json_object)
         print(result.status_code)
         print(result.content)
         if result != 200:
