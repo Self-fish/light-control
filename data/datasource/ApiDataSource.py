@@ -3,6 +3,7 @@ import json
 import requests
 
 from requests.exceptions import ConnectionError, ConnectTimeout
+from requests.structures import CaseInsensitiveDict
 
 from data.datamodel.LightPreferencesDataModel import LightPreferencesDataModel
 from data.datasource.NoApiPreferencesException import NoApiPreferenceException
@@ -39,9 +40,11 @@ def get_light_preferences():
 def update_light_preferences(preferences: LightPreferencesDataModel):
     try:
         body = {'lightsPreferences': {'mode': preferences.light_mode.name, 'range': {'starting': preferences.starting_hour, 'finishing': preferences.finishing_hour}}, 'deviceId': 'sf-000000009df9b724'}
+        headers = CaseInsensitiveDict()
+        headers["Content-Type"] = "application/json"
         json_object = json.dumps(body)
         print(json_object)
-        result = requests.put(API_URI_UPDATE, data=body)
+        result = requests.put(API_URI_UPDATE, headers=headers, data=body)
         print(result.status_code)
         print(result.content)
         if result != 200:
