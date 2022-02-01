@@ -7,6 +7,7 @@ from data.datasource.NoApiPreferencesException import NoApiPreferenceException
 from domain.model.LightMode import LightMode
 
 API_URI = "http://localhost:8081/preferences?deviceId=sf-000000009df9b724"
+API_URI_UPDATE = "http://localhost:8081/preferences/updateLightPreferences"
 
 
 MANUAL_OFF = "MANUAL_OFF"
@@ -29,5 +30,20 @@ def get_light_preferences():
                                              preferences.json()['lightsPreferences']['range']['finishing'],
                                              light_mode)
 
+    except (ConnectionError, ConnectTimeout):
+        raise NoApiPreferenceException
+
+
+def update_light_preferences(preferences: LightPreferencesDataModel):
+    try:
+        body = {'lightsPreferences':
+                    {'mode': preferences.light_mode,
+                     'range':
+                         {'starting': preferences.starting_hour,
+                          'finishing': preferences.finishing_hour
+                          }
+                     }
+                }
+        requests.put(API_URI_UPDATE, body)
     except (ConnectionError, ConnectTimeout):
         raise NoApiPreferenceException

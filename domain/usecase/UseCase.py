@@ -9,6 +9,7 @@ from data.repository import Preferences
 from data.repository.LightStatus import LightStatusRepository
 from domain.model.LightMode import LightMode
 from domain.model.LightPreferences import LightPreferences
+from domain.model.LightPreferencesSource import LightPreferencesSource
 
 
 def should_turn_on_lights(current_time, light_preferences: LightPreferences):
@@ -38,8 +39,12 @@ class HandleLightsUseCase:
             self.__light_repository.update_light_status(RelayStatus.OFF)
 
     def turn_on_lights(self):
-        self.__light_repository.update_light_status(RelayStatus.ON)
+        preferences = LightPreferences("00:00", "00:00", LightMode.MANUAL_ON, LightPreferencesSource.API)
+        if Preferences.update_light_preferences(preferences) == 0:
+            self.__light_repository.update_light_status(RelayStatus.ON)
 
     def turn_off_lights(self):
-        self.__light_repository.update_light_status(RelayStatus.OFF)
+        preferences = LightPreferences("00:00", "00:00", LightMode.MANUAL_OFF, LightPreferencesSource.API)
+        if Preferences.update_light_preferences(preferences) == 0:
+            self.__light_repository.update_light_status(RelayStatus.OFF)
 
