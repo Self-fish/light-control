@@ -6,6 +6,7 @@ def get_light_preferences():
     line_number = 0
     starting_hour = ""
     finishing_hour = ""
+    mode = ""
     file = open('lights.conf', 'r')
     lines = file.readlines()
     for line in lines:
@@ -14,9 +15,12 @@ def get_light_preferences():
         print(split_line)
         if line_number == 0:
             starting_hour = str(split_line[1])
-        else:
+        elif line_number == 1:
             finishing_hour = str(split_line[1])
+        else:
+            mode = str(split_line[1])
         line_number += 1
     print(starting_hour)
     print(finishing_hour)
-    return LightPreferencesDataModel(starting_hour, finishing_hour, LightMode.AUTOMATIC)
+    print(mode)
+    return LightPreferencesDataModel(starting_hour, finishing_hour, LightMode(mode))
