@@ -9,6 +9,7 @@ def get_light_preferences():
     with open('lights.conf') as file:
         file_contents = file.read()
         row_line = file_contents.split('=')
+        print(row_line)
         if line == 0:
             starting_hour = str(row_line[1])
         else:
