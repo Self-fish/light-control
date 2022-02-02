@@ -3,20 +3,20 @@ from domain.model.LightMode import LightMode
 
 
 def get_light_preferences():
-    line = 0
+    line_number = 0
     starting_hour = ""
     finishing_hour = ""
-    with open('lights.conf') as file:
+    file = open('lights.conf', 'r')
+    lines = file.readlines()
+    for line in lines:
         print(line)
-        file_contents = file.read()
-        print(file_contents)
-        row_line = file_contents.split('=')
-        print(row_line)
-        if line == 0:
-            starting_hour = str(row_line[1])
+        split_line = line.split('=')
+        print(split_line)
+        if line_number == 0:
+            starting_hour = str(split_line[1])
         else:
-            finishing_hour = str(row_line[1])
-        line += 1
+            finishing_hour = str(split_line[1])
+        line_number += 1
     print(starting_hour)
     print(finishing_hour)
     return LightPreferencesDataModel(starting_hour, finishing_hour, LightMode.AUTOMATIC)
