@@ -4,6 +4,8 @@ from domain.model.LightMode import LightMode
 
 def get_light_preferences():
     line = 0
+    starting_hour = ""
+    finishing_hour = ""
     with open('lights.conf') as file:
         file_contents = file.read()
         row_line = file_contents.split('=')
