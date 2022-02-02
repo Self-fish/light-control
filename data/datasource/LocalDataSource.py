@@ -23,4 +23,4 @@ def get_light_preferences():
     print(starting_hour)
     print(finishing_hour)
     print(mode)
-    return LightPreferencesDataModel(starting_hour, finishing_hour, LightMode("MANUAL_ON"))
+    return LightPreferencesDataModel(starting_hour, finishing_hour, LightMode["MANUAL_ON"])
