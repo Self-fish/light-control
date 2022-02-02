@@ -11,7 +11,7 @@ def get_light_preferences():
             starting_hour = str(row_line[1])
         else:
             finishing_hour = str(row_line[1])
-        print(starting_hour)
-        print(finishing_hour)
         line += 1
+    print(starting_hour)
+    print(finishing_hour)
     return LightPreferencesDataModel(starting_hour, finishing_hour, LightMode.AUTOMATIC)
