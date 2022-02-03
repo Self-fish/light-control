@@ -32,7 +32,9 @@ class HandleLightsUseCase:
         print("Manejamos luces")
         current_time = datetime.now(timezone('Europe/Madrid')).strftime("%H:%M")
         preferences = Preferences.get_light_preferences()
-        print(str(preferences))
+        print(preferences.starting_hour)
+        print(preferences.finishing_hour)
+        print(preferences.source)
         if should_turn_on_lights(current_time, preferences):
             print("Encendemos las luces")
             self.__light_repository.update_light_status(RelayStatus.ON)
