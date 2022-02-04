@@ -1,5 +1,6 @@
 from data.datamodel.LightPreferencesDataModel import LightPreferencesDataModel
 from domain.model.LightMode import LightMode
+import os
 
 
 def get_light_preferences():
@@ -19,3 +20,10 @@ def get_light_preferences():
             mode = str(split_line[1])
         line_number += 1
     return LightPreferencesDataModel(starting_hour, finishing_hour, LightMode[mode[:-1]])
+
+
+def update_light_preferences(starting_hour, finishing_hour, mode:LightMode):
+    file = open("lights.conf2", "w")
+    file.write("starting_hour=" + starting_hour + "\nfinishing_hour=" + finishing_hour + "\nmode=" + mode.name)
+    file.close()
+    print("Updating local source")

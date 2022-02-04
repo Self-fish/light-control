@@ -38,11 +38,11 @@ class HandleLightsUseCase:
 
     def turn_on_lights(self):
         preferences = LightPreferences("00:00", "00:00", LightMode.MANUAL_ON, LightPreferencesSource.API)
-        if Preferences.update_light_preferences(preferences) == 0:
+        if Preferences.update_remote_light_preferences(preferences) == 0:
             self.__light_repository.update_light_status(RelayStatus.ON)
 
     def turn_off_lights(self):
         preferences = LightPreferences("00:00", "00:00", LightMode.MANUAL_OFF, LightPreferencesSource.API)
-        if Preferences.update_light_preferences(preferences) == 0:
+        if Preferences.update_remote_light_preferences(preferences) == 0:
             self.__light_repository.update_light_status(RelayStatus.OFF)
 

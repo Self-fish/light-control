@@ -8,6 +8,7 @@ from domain.model.LightPreferencesSource import LightPreferencesSource
 def get_light_preferences():
     try:
         preferences = ApiDataSource.get_light_preferences()
+        update_local_light_preferences(preferences)
         return LightPreferences(preferences.starting_hour, preferences.finishing_hour, preferences.light_mode,
                                 LightPreferencesSource.API)
     except NoApiPreferenceException:
@@ -16,11 +17,17 @@ def get_light_preferences():
                                 LightPreferencesSource.LOCAL)
 
 
-def update_light_preferences(light_preferences: LightPreferences):
+def update_remote_light_preferences(light_preferences: LightPreferences):
     try:
         preferences = LightPreferencesDataModel(light_preferences.starting_hour, light_preferences.finishing_hour,
                                                 light_preferences.light_mode)
         ApiDataSource.update_light_preferences(preferences)
+        update_local_light_preferences(preferences)
         return 0
     except NoApiPreferenceException:
         return -1
+
+
+def update_local_light_preferences(preferences: LightPreferencesDataModel):
+    LocalDataSource.update_light_preferences(preferences.starting_hour, preferences.finishing_hour,
+                                             preferences.light_mode)
