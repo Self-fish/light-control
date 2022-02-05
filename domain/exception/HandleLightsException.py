@@ -1,0 +1,4 @@
+
+
+class HandleLightsException(Exception):
+    pass
