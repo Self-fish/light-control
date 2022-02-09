@@ -23,8 +23,9 @@ if __name__ == '__main__':
     service = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     service.bind(("", 2001))
     service.listen(1)
-    client, address = service.accept()
-    while client:
+
+    while True:
+        client, address = service.accept()
         while True:
             message = client.recv(1024)
             if message.decode("UTF-8") == "LIGHTS_ON":
