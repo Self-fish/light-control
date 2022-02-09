@@ -27,6 +27,7 @@ if __name__ == '__main__':
     while client:
         while True:
             message = bytearray(client.recv(1024))
+            print(message)
             del message[0]
             del message[0]
             if message.decode("UTF-8") == "LIGHTS_ON":
