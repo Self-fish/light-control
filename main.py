@@ -26,14 +26,20 @@ if __name__ == '__main__':
 
     while True:
         client, address = service.accept()
-        while True:
-            message = client.recv(1024)
-            if message.decode("UTF-8") == "LIGHTS_ON":
-                print("Aqui")
-                handle_light_use_case.turn_on_lights()
-            elif message.decode("UTF-8") == "LIGHTS_OFF":
-                print("Alla")
-                handle_light_use_case.turn_off_lights()
-    print("Cerramos")
-    client.close()
-    service.close()
+        try:
+            while True:
+                message = client.recv(1024)
+                if message:
+                    if message.decode("UTF-8") == "LIGHTS_ON":
+                        print("Aqui")
+                        handle_light_use_case.turn_on_lights()
+                    elif message.decode("UTF-8") == "LIGHTS_OFF":
+                        print("Alla")
+                        handle_light_use_case.turn_off_lights()
+                else:
+                    print("break")
+                    break
+        finally:
+            print("Cerramos")
+            client.close()
+            service.close()
