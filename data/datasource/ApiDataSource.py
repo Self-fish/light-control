@@ -10,7 +10,7 @@ from data.datasource.NoApiPreferencesException import NoApiPreferenceException
 from domain.model.LightMode import LightMode
 
 API_URI = "http://localhost:8081/preferences?deviceId=sf-000000009df9b724"
-API_URI_UPDATE = "http://localhost:8081/preferences/updateLightPreferences"
+API_URI_UPDATE = "http://localhost:8081/preferences"
 
 
 MANUAL_OFF = "MANUAL_OFF"
