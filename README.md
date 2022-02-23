@@ -33,14 +33,14 @@ def get_light_preferences():
 We are able to send remote actions by using sockets. The messages are received by the actions-api-py who acts as a client sending those in the port 2021
 
 ```python
-    def check_from_action(self):
-        self.__socket_server.listen_messages(self.__handle_action)
+def check_from_action(self):
+    self.__socket_server.listen_messages(self.__handle_action)
 
-    def __handle_action(self, action):
-        if action.decode("UTF-8") == LIGHTS_ON:
-            self.__turn_on_lights()
-        elif action.decode("UTF-8") == LIGHTS_OFF:
-            self.__turn_off_lights()
+def __handle_action(self, action):
+    if action.decode("UTF-8") == LIGHTS_ON:
+        self.__turn_on_lights()
+    elif action.decode("UTF-8") == LIGHTS_OFF:
+        self.__turn_off_lights()
 ```
 
 It's done by creating a socket service listening in the port 2001
