@@ -9,4 +9,4 @@ class HandleLightsContainer(containers.DeclarativeContainer):
     config = providers.Configuration()
     light_controller = providers.Factory(RelayController, 6)
     light_status_repository = providers.Singleton(LightStatusRepository, light_controller)
-    socket_server = providers.Factory(SocketServer)
+    socket_server = providers.Factory(SocketServer, 2001)

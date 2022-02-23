@@ -1,13 +1,11 @@
 import socket
 
-LIGHTS_PORT = 2001
-
 
 class SocketServer:
 
-    def __init__(self):
+    def __init__(self, port):
         self.__service = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.__service.bind(("", LIGHTS_PORT))
+        self.__service.bind(("", port))
         self.__service.listen(1)
 
     def listen_messages(self, handle_message):

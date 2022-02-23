@@ -13,5 +13,3 @@ class LightStatusRepository:
         if light_status != self.current_light_status:
             self.__light_controller.update_relay_status(light_status)
             self.current_light_status = light_status
-
-

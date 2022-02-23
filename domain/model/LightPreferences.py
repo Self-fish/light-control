@@ -10,7 +10,3 @@ class LightPreferences:
         self.finishing_hour = finishing_hour
         self.light_mode = light_mode
         self.source = source
-
-
-
-

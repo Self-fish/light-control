@@ -48,9 +48,9 @@ class HandleLightsUseCase:
             pass
 
     def check_from_action(self):
-        self.__socket_server.listen_messages(self.handle_action)
+        self.__socket_server.listen_messages(self.__handle_action)
 
-    def handle_action(self, action):
+    def __handle_action(self, action):
         if action.decode("UTF-8") == LIGHTS_ON:
             self.__turn_on_lights()
         elif action.decode("UTF-8") == LIGHTS_OFF:
