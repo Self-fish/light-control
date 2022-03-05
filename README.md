@@ -18,12 +18,14 @@ def get_light_preferences():
     try:
         preferences = ApiDataSource.get_light_preferences()
         update_local_light_preferences(preferences)
-        return LightPreferences(preferences.starting_hour, preferences.finishing_hour, preferences.light_mode,
+        return LightPreferences(preferences.starting_hour, 
+                                preferences.finishing_hour, preferences.light_mode,
                                 LightPreferencesSource.API)
     except NoApiPreferenceException:
         try:
             preferences = LocalDataSource.get_light_preferences()
-            return LightPreferences(preferences.starting_hour, preferences.finishing_hour, preferences.light_mode,
+            return LightPreferences(preferences.starting_hour, 
+                                    preferences.finishing_hour, preferences.light_mode,
                                     LightPreferencesSource.LOCAL)
         except NoLocalPreferencesException:
             raise HandleLightsException
