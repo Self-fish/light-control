@@ -2,7 +2,7 @@
 The purpose of this code is to be able to handle de lights in two different ways:
 
 ## From remote preferences
-It handles the light by reading the starting and finishing hour from the preferences-api by asking each minute what is the correct status and updating a local cache:
+It handles the light by reading the starting and finishing hour from the [preferences-api](https://github.com/Self-fish/preferences-api-py) by asking each minute what is the correct status and updating a local cache:
 
 ```python
 def handle_lights(use_case: HandleLightsUseCase):
@@ -11,7 +11,7 @@ def handle_lights(use_case: HandleLightsUseCase):
         time.sleep(60)
 ```
 
-If for whatever reason the preferences-api is not available, it gets the preferences from the local cache:
+If for whatever reason the [preferences-api](https://github.com/Self-fish/preferences-api-py) is not available, it gets the preferences from the local cache:
 
 ```python
 def get_light_preferences():
@@ -32,7 +32,7 @@ def get_light_preferences():
  ```
         
 ## From remote actions
-We are able to send remote actions by using sockets. The messages are received by the actions-api-py who acts as a client sending those in the port 2021
+We are able to send remote actions by using sockets. The messages are received by the [actions-api](https://github.com/Self-fish/actions-api-py) who acts as a client sending those in the port 2021
 
 ```python
 def check_from_action(self):
